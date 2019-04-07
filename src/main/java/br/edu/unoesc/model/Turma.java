@@ -5,7 +5,6 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -16,7 +15,14 @@ public class Turma {
 	private String nome;
 	@XmlElementWrapper(name="alunos")
 	private List<Aluno> aluno;
-
+	
+	public Double calculaMedia(Turma turma){
+	Double media = 0.0;	
+		for (Aluno aluno : turma.getAlunos()) {
+			media += aluno.calculaMedia();
+		}
+		return media = media / turma.getAlunos().size();
+	}
 	
 	public Turma() {
 		

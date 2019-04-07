@@ -1,5 +1,7 @@
 package br.edu.unoesc.model;
 
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -15,6 +17,23 @@ public class Disciplina {
 	private Long codigo;
 	@XmlElement
 	private Double nota;
+	
+	private Double media = 0.0;
+
+	public Double calculaMedia(List<Aluno> alunos, Long disciplinaCod) {
+		Integer qntAlunos = 0;
+		for (Aluno aluno : alunos) {
+			if (aluno.getDisciplinas() != null) {
+				for (Disciplina disciplina : aluno.getDisciplinas()) {
+					if (disciplina.getCodigo().equals(disciplinaCod)) {
+						this.media += disciplina.nota;
+						qntAlunos++;
+					}
+				}
+			}
+		}
+		return this.media = media / qntAlunos;
+	}
 
 	public Disciplina() {
 
